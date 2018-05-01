@@ -13,7 +13,7 @@
         </swiper-item>
       </swiper>
 
-      <view class="hello">您好 {{user._mail}} (uid: {{user.id}}) 持续开发中 v0.3.2</view>
+      <view class="hello">您好 {{user._mail}} (uid: {{user.id}}) 持续开发中 v0.3.3</view>
 
       <view class="breadcrumb">
         <view class="breadcrumb__item">
@@ -186,7 +186,8 @@
           const {result} = await scanCode()
           if (hongbao.likeToken(result)) {
             await storage.setData('token', result)
-            return wx.redirectTo({url: '/pages/index/main'})
+            this.view = ''
+            return this.getData()
           }
           wx.showModal({
             title: '扫描的目标不正确',
