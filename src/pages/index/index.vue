@@ -136,13 +136,12 @@
           // this.userCookie = userCookie
           // this.userReceiving = userReceiving
           // } catch (e) {}
+
           // 改为各自请求，不会因为一个失败或很慢，导致全部显示不出来
           /* eslint-disable */
-          hongbao.zhuangbi().then(zhuangbi => this.zhuangbi = zhuangbi)
-          hongbao.notice().then(notice => this.notice = notice)
-          hongbao.userAvailable().then(userAvailable => this.userAvailable = userAvailable)
-          hongbao.userCookie().then(userCookie => this.userCookie = userCookie)
-          hongbao.userReceiving().then(userReceiving => this.userReceiving = userReceiving)
+          ;['zhuangbi', 'notice', 'userAvailable', 'userCookie', 'userReceiving'].forEach(key => {
+            hongbao[key]().then(data => this[key] = data)
+          })
         } catch (e) {
           this.view = 'normal'
         }
