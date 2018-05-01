@@ -13,7 +13,7 @@
         </swiper-item>
       </swiper>
 
-      <view class="hello">您好 {{user.mail}} (uid: {{user.id}})</view>
+      <view class="hello">您好 {{user._mail}} (uid: {{user.id}}) 持续开发中 v0.3.2</view>
 
       <view class="breadcrumb">
         <view class="breadcrumb__item">
@@ -187,8 +187,13 @@
           const {result} = await scanCode()
           if (hongbao.likeToken(result)) {
             await storage.setData('token', result)
-            wx.redirectTo({url: '/pages/index/main'})
+            return wx.redirectTo({url: '/pages/index/main'})
           }
+          wx.showModal({
+            title: '扫描的目标不正确',
+            content: '请访问 https://www.mtdhb.com 了解如何使用',
+            showCancel: false
+          })
         } catch (e) {}
       },
       async clickAlipay () {

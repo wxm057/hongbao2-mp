@@ -99,6 +99,7 @@ export default {
             showCancel: false
           })
         }
+        user._mail = user.mail.split('@')[0].slice(0, 4) + '****'
         this._user = user
         storage.setData('token', token)
         return user
