@@ -155,6 +155,7 @@
           await storage.setData('phone', phone)
           this.enableHongbao = false
           this.url = ''
+          this.phone = phone
           const data = await hongbao.userReceiving({url, phone})
           this.userReceiving.unshift(data)
           await this.refreshUserReceiving()
