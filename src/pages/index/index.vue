@@ -122,20 +122,27 @@
         try {
           this.user = await hongbao.user()
           this.view = 'hongbao'
-          try {
-            const [zhuangbi, notice, userAvailable, userCookie, userReceiving] = await Promise.all([
-              hongbao.zhuangbi(),
-              hongbao.notice(),
-              hongbao.userAvailable(),
-              hongbao.userCookie(),
-              hongbao.userReceiving()
-            ])
-            this.zhuangbi = zhuangbi
-            this.notice = notice
-            this.userAvailable = userAvailable
-            this.userCookie = userCookie
-            this.userReceiving = userReceiving
-          } catch (e) {}
+          // try {
+          // const [zhuangbi, notice, userAvailable, userCookie, userReceiving] = await Promise.all([
+          //   hongbao.zhuangbi(),
+          //   hongbao.notice(),
+          //   hongbao.userAvailable(),
+          //   hongbao.userCookie(),
+          //   hongbao.userReceiving()
+          // ])
+          // this.zhuangbi = zhuangbi
+          // this.notice = notice
+          // this.userAvailable = userAvailable
+          // this.userCookie = userCookie
+          // this.userReceiving = userReceiving
+          // } catch (e) {}
+          // 改为各自请求，不会因为一个失败或很慢，导致全部显示不出来
+          /* eslint-disable */
+          hongbao.zhuangbi().then(zhuangbi => this.zhuangbi = zhuangbi)
+          hongbao.notice().then(notice => this.notice = notice)
+          hongbao.userAvailable().then(userAvailable => this.userAvailable = userAvailable)
+          hongbao.userCookie().then(userCookie => this.userCookie = userCookie)
+          hongbao.userReceiving().then(userReceiving => this.userReceiving = userReceiving)
         } catch (e) {
           this.view = 'normal'
         }
