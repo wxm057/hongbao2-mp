@@ -175,7 +175,7 @@
       },
       async scanCode (event) {
         try {
-          const {result} = await scanCode({onlyFromCamera: true})
+          const {result} = await scanCode()
           if (hongbao.likeToken(result)) {
             await storage.setData('token', result)
             wx.redirectTo({url: '/page/index'})
