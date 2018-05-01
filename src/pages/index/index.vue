@@ -180,7 +180,7 @@
           const {result} = await scanCode()
           if (hongbao.likeToken(result)) {
             await storage.setData('token', result)
-            wx.redirectTo({url: '/page/index'})
+            wx.redirectTo({url: '/pages/index/main'})
           }
         } catch (e) {}
       },
