@@ -114,7 +114,7 @@
     onShareAppMessage () {
       return {
         title: '一键最佳',
-        path: '/page/index'
+        path: '/pages/index/main'
       }
     },
     methods: {
