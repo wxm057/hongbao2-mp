@@ -171,6 +171,7 @@
         } else {
           this.userReceiving[0] = data
           this.enableHongbao = true
+          this.userAvailable = await hongbao.userAvailable()
         }
       },
       async scanCode (event) {
