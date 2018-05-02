@@ -1,5 +1,9 @@
 <template>
   <view>
+    <view class="loading" v-if="view === 'loading'">
+      正在加载...长时间没有响应请下拉刷新
+    </view>
+
     <view class="normal" v-if="view === 'normal'">
       <image @click="scanCode" v-for="(item, index) in normal" :key="index" mode="aspectFill" :src="item" />
     </view>
@@ -185,8 +189,8 @@
         try {
           const {result} = await scanCode()
           if (hongbao.likeToken(result)) {
+            this.view = 'loading'
             await storage.setData('token', result)
-            this.view = ''
             return this.getData()
           }
           wx.showModal({
@@ -215,6 +219,15 @@
   input,
   textarea {
     box-sizing: border-box;
+  }
+
+  .loading {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #999;
   }
 
   .normal {
