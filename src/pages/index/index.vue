@@ -17,7 +17,7 @@
         </swiper-item>
       </swiper>
 
-      <view class="hello">您好 {{user._mail}} (uid: {{user.id}}) 持续开发中 v0.4.0</view>
+      <view class="hello">您好 {{user._mail}} (uid: {{user.id}}) 持续开发中 v0.4.1</view>
 
       <view class="breadcrumb">
         <view class="breadcrumb__item">
@@ -44,7 +44,7 @@
       <view class="getHongbao">
         <form @submit="submitHongbao">
           <input class="getHongbao__input" name="phone" type="number" :value="phone" maxlength="11" placeholder="请输入要领取最大红包的手机号码" />
-          <textarea class="getHongbao__textarea" name="url" :value="url" placeholder="请输入美团、饿了么拼手气红包链接（具体规则请访问网页版查看相关的教程）" />
+          <textarea class="getHongbao__textarea" name="url" :value="url" maxlength="-1" placeholder="请输入美团、饿了么拼手气红包链接（具体规则请访问网页版查看相关的教程）" />
           <button :class="['getHongbao__get', {'getHongbao__get--disabled': !enableHongbao}]" form-type="submit">
             {{enableHongbao ? '领取手气最佳红包' : '正在领取红包...'}}
           </button>
