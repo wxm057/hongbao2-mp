@@ -43,8 +43,8 @@ export default {
   userAvailable () {
     return this.request({url: '/user/available'})
   },
-  notice () {
-    let data = this.request({url: '/notice.json'})
+  async notice () {
+    let data = await this.request({url: '/notice.json'})
     if (data.length) {
       // 做下接口兼容
       if (typeof data[0] === 'object') {

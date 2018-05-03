@@ -132,6 +132,7 @@
             hongbao[key]().then(data => this[key] = data)
           })
         } catch (e) {
+          console.error(e)
           this.view = 'normal'
         }
       },
