@@ -126,24 +126,9 @@
         try {
           this.user = await hongbao.user()
           this.view = 'hongbao'
-          // try {
-          // const [zhuangbi, notice, userAvailable, userCookie, userReceiving] = await Promise.all([
-          //   hongbao.zhuangbi(),
-          //   hongbao.notice(),
-          //   hongbao.userAvailable(),
-          //   hongbao.userCookie(),
-          //   hongbao.userReceiving()
-          // ])
-          // this.zhuangbi = zhuangbi
-          // this.notice = notice
-          // this.userAvailable = userAvailable
-          // this.userCookie = userCookie
-          // this.userReceiving = userReceiving
-          // } catch (e) {}
-
-          // 改为各自请求，不会因为一个失败或很慢，导致全部显示不出来
-          /* eslint-disable */
+          // 各自请求而不是 Promise.all()，这样不会因为一个失败或很慢，导致全部显示不出来
           ;['zhuangbi', 'notice', 'userAvailable', 'userCookie', 'userReceiving'].forEach(key => {
+            // eslint-disable-next-line
             hongbao[key]().then(data => this[key] = data)
           })
         } catch (e) {

@@ -44,7 +44,14 @@ export default {
     return this.request({url: '/user/available'})
   },
   notice () {
-    return this.request({url: '/notice.json'})
+    let data = this.request({url: '/notice.json'})
+    if (data.length) {
+      // 做下接口兼容
+      if (typeof data[0] === 'object') {
+        data = data.filter(notice => ['all', 'mp'].includes(notice.type)).map(notice => notice.content)
+      }
+    }
+    return data
   },
   async zhuangbi () {
     const data = await this.request({url: '/zhuangbi'})
